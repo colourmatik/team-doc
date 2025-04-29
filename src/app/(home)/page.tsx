@@ -16,7 +16,7 @@ const Home = () => {
 
   if (document === undefined) {
     return (
-      <p>Loading...</p>
+      <p>Загрузка...</p>
     )
   }
 
