@@ -48,17 +48,20 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
           </AlertDialogCancel>
           <AlertDialogAction
             disabled={isRemoving}
-            onClick={(e) => {
+            onClick={async (e) => {
               e.stopPropagation();
               setIsRemoving(true);
-              remove({ id: documentId })
-                .catch(() => toast.error("Something went wrong"))
-                .then(() => {
-                  toast.success("Document removed");
-                  router.push("/");
-                })
-                .finally(() => setIsRemoving(false));
+              try {
+                await remove({ id: documentId });
+                toast.success("Документ успешно удален");
+                router.push("/");
+              } catch {
+                toast.error("Вы не являетесь владельцем документа");
+              } finally {
+                setIsRemoving(false);
+              }
             }}
+            
           >
             Удалить
           </AlertDialogAction>

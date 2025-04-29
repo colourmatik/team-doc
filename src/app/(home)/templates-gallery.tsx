@@ -7,6 +7,7 @@ import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
+import { toast } from "sonner";
 
 
 export const TemplatesGallery = () => {
@@ -17,7 +18,9 @@ export const TemplatesGallery = () => {
     const onTemplateClick = (title: string, initialContent: string) => {
         setIsCreating(true);
         create({title, initialContent})
+        .catch(()=> toast.error ("Что-то пошло не так"))
         .then((documentId) => {
+            toast.success("Документ успешно создан")
             router.push(`/documents/${documentId}`);
         })
         .finally(() =>  {

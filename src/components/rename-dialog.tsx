@@ -36,8 +36,8 @@ export const RenameDialog = ({ documentId, initialTitle, children }: RenameDialo
     setIsUpdating(true);
 
     update({ id: documentId, title: title.trim() || "Пустой документ" })
-      .catch(() => toast.error("Something went wrong"))
-      .then(() => toast.success("Document updated"))
+      .catch(() => toast.error("что-то пошло не так"))
+      .then(() => toast.success("Документ успешно переименован"))
       .finally(() => {
         setIsUpdating(false);
         setOpen(false);
