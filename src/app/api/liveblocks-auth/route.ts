@@ -4,18 +4,30 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 
 import { api } from "../../../../convex/_generated/api";
 
+type OrganizationClaims = {
+  id: string;
+  slg?: string;
+  rol?: string;
+  per?: string;
+  fpm?: string;
+};
+
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 const liveblocks = new Liveblocks({
   secret: process.env.LIVEBLOCKS_SECRET_KEY!,
 });
+
 
 export async function POST(req: Request) {
   const { sessionClaims } = await auth();
   if (!sessionClaims) {
     return new Response("Unauthorized", { status: 401 });
   }
+  const orgClaims = sessionClaims?.o as OrganizationClaims | undefined;
+
 
   const user = await currentUser();
+  console.log({sessionClaims})
   if (!user) {
     return new Response("Unauthorized", { status: 401 });
   }
@@ -28,8 +40,8 @@ export async function POST(req: Request) {
   }
 
   const isOwner = document.ownerId === user.id;
-  const isOrganizationMember = 
-    !!(document.organizationId && document.organizationId === sessionClaims.org_id);
+const isOrganizationMember =
+  !!(document.organizationId && orgClaims?.id && document.organizationId === orgClaims.id);
 
   if (!isOwner && !isOrganizationMember) {
     return new Response("Unauthorized", { status: 401 });

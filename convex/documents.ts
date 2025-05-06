@@ -81,6 +81,10 @@ export const removeById = mutation ({
       throw new ConvexError("Unauthorized")
     }
 
+    const organizationId = (user.organization_id ?? undefined) as 
+    | string
+    | undefined;
+
     const document = await ctx.db.get(args.id);
 
     if (!document){
@@ -88,8 +92,10 @@ export const removeById = mutation ({
     }
 
     const isOwner = document.ownerId === user.subject;
+    const isOrganizationMember = 
+    !!(document.organizationId && document.organizationId === organizationId);
 
-    if (!isOwner) {
+    if (!isOwner && !isOrganizationMember) {
       throw new ConvexError("Unauthorized")
     }
 
@@ -117,7 +123,8 @@ export const updateById = mutation ({
     }
 //роли 718
     const isOwner = document.ownerId === user.subject;
-    const isOrganizationMember = document.organizationId === organizationId;
+    const isOrganizationMember = 
+    !!(document.organizationId && document.organizationId === organizationId);
 
 
     if (!isOwner && !isOrganizationMember) {
