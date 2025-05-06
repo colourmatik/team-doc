@@ -27,7 +27,6 @@ export async function POST(req: Request) {
 
 
   const user = await currentUser();
-  console.log({sessionClaims})
   if (!user) {
     return new Response("Unauthorized", { status: 401 });
   }
