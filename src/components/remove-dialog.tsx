@@ -3,7 +3,6 @@
 import { toast } from "sonner";
 import { useState } from "react";
 import { useMutation } from "convex/react";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +14,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { api } from "../../convex/_generated/api";
 import { Id } from "../../convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
@@ -23,18 +21,32 @@ import { useRouter } from "next/navigation";
 interface RemoveDialogProps {
   documentId: Id<"documents">;
   children: React.ReactNode;
-};
+}
 
 export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
   const router = useRouter();
   const remove = useMutation(api.documents.removeById);
   const [isRemoving, setIsRemoving] = useState(false);
 
+  const handleDelete = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsRemoving(true);
+
+    router.push("/");
+
+    try {
+      await remove({ id: documentId });
+      toast.success("Документ успешно удален");
+    } catch {
+      toast.error("Вы не являетесь владельцем документа");
+    } finally {
+      setIsRemoving(false);
+    }
+  };
+
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        {children}
-      </AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent onClick={(e) => e.stopPropagation()}>
         <AlertDialogHeader>
           <AlertDialogTitle>Вы уверены?</AlertDialogTitle>
@@ -48,21 +60,7 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
           </AlertDialogCancel>
           <AlertDialogAction
             disabled={isRemoving}
-            onClick={async (e) => {
-              e.stopPropagation();
-              setIsRemoving(true);
-              try {
-                await remove({ id: documentId });
-                toast.success("Документ успешно удален");
-                router.push("/");
-              } catch {
-                toast.error("Вы не являетесь владельцем документа");
-              } finally {
-                setIsRemoving(false);
-              }
-            }}
-            
-          >
+            onClick={handleDelete}>
             Удалить
           </AlertDialogAction>
         </AlertDialogFooter>
