@@ -4,6 +4,8 @@ import {NuqsAdapter} from "nuqs/adapters/next/app"
 
 import { Toaster } from "@/components/ui/sonner";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { ruRU } from '@clerk/localizations'
 
 import "@liveblocks/react-ui/styles.css";
 import "@liveblocks/react-tiptap/styles.css";
@@ -25,6 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider localization={ruRU}>
     <html lang="en">
       <body
         className={inter.className}
@@ -37,5 +40,6 @@ export default function RootLayout({
         </NuqsAdapter>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
