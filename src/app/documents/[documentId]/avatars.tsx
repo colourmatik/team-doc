@@ -4,7 +4,6 @@ import { ClientSideSuspense } from "@liveblocks/react";
 import { useOthers, useSelf } from "@liveblocks/react/suspense";
 
 import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 
 const AVATAR_SIZE = 36;
 
