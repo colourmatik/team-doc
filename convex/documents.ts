@@ -36,7 +36,9 @@ export const create = mutation({
     return await ctx.db.insert("documents", {
       title: args.title ?? "Безымянный документ",
       ownerId: user.subject,
+      ownerName: user.name ?? "Без имени",
       organizationId,
+      organizationName: typeof user.organization_name === "string" ? user.organization_name : undefined,
       initialContent: args.initialContent,
     });
   },
