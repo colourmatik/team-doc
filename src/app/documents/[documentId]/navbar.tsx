@@ -74,7 +74,7 @@ export const Navbar = ({data}: NavbarProps) => {
         const blob = new Blob([JSON.stringify(content)], {
             type: "application/json",
         });
-        onDownload(blob, `$(data.title).json`) //TODO Использование имени документа
+        onDownload(blob, `${data.title}.json`) //TODO Использование имени документа
     };
 
     const onSaveHTML = () => {
@@ -84,7 +84,7 @@ export const Navbar = ({data}: NavbarProps) => {
         const blob = new Blob([content], {
             type: "text/html",
         });
-        onDownload(blob, `$(data.title).html`) //TODO Использование имени документа
+        onDownload(blob, `${data.title}.html`) //TODO Использование имени документа
     };
 
     const onSaveText = () => {
@@ -94,10 +94,9 @@ export const Navbar = ({data}: NavbarProps) => {
         const blob = new Blob([JSON.stringify(content)], {
             type: "text/plain",
         });
-        onDownload(blob, `$(data.title).txt`) //TODO Использование имени документа
+        onDownload(blob, `${data.title}.txt`) //TODO Использование имени документа
     };
 
-    
 
     return (
         <nav className="flex items-center justify-between">
