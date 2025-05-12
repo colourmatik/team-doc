@@ -425,7 +425,7 @@ const HeadingLevelButton = () => {
     const getCurrentHeading = () => {
         for (let level=1; level <=5; level++){
             if (editor?.isActive("heading", {level})) {
-                return `Heading ${level}`;
+                return `Заголовок ${level}`;
             }
         }
 
@@ -476,9 +476,10 @@ const FontFamilyButton = () => {
         {label: "Arial", value: "Arial"},
         {label: "Times New Roman", value: "Times New Roman"},
         {label: "Verdana", value: "Verdana"},
-        {label: "Georgia", value: "Georgia"},
-        {label: "Comic Sans", value: "Comic Sans"},
-        {label: "Roboto", value: "Roboto"},
+        {label: "Tahoma", value: "Tahoma"},
+        {label: "Trebuchet MS", value: "Trebuchet MS"},
+        {label: "Garamond", value: "Garamond"},
+        {label: "Courier New", value: "Courier New"},
     ];
 
     return (
