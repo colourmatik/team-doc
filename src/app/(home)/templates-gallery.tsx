@@ -29,7 +29,7 @@ export const TemplatesGallery = () => {
     };
 
     return(
-        <div className="bg-[#f1f3f4]">
+        <div className="bg-[#d3e2f0]">
            <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-y-4">
                 <h3 className="font-medium">Создать новый документ</h3>
                 <Carousel>
