@@ -8,7 +8,7 @@ export const Navbar = () => {
         <nav className="flex items-center justify-between h-full w-full">
             <div className="flex gap-3 items-center shrink-0 pr-6">
                 <Link href="/">
-                    <Image src="/logo.svg" alt="Logo" width={36} height={36}/>
+                    <Image src="/logo.svg" alt="Logo" width={52} height={52} className="px-1"/>
                 </Link>
                 <h3 className="text-xl">TeamDoc</h3>
             </div>
@@ -21,7 +21,9 @@ export const Navbar = () => {
             afterSelectOrganizationUrl="/"
             afterSelectPersonalUrl="/"
             />
-            <UserButton/>
+            <div className="flex gap-3 items-center shrink-0 pr-6">
+            <UserButton />
+            </div>
             </div>
         </nav>
     );

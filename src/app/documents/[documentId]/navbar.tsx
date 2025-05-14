@@ -252,7 +252,9 @@ export const Navbar = ({data}: NavbarProps) => {
                         afterSelectOrganizationUrl="/"
                         afterSelectPersonalUrl="/"
                         />
+                        <div className="flex gap-3 items-center shrink-0 pr-6">
                         <UserButton/>
+                        </div>
                         </div>
         </nav>
     );
