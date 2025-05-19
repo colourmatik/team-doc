@@ -13,13 +13,19 @@ export const upsertFromClerk = internalMutation({
   args: { data: v.any() as Validator<UserJSON> }, // no runtime validation, trust Clerk
   async handler(ctx, { data }) {
     const userAttributes = {
-      clerkId: data.id, // Ensure clerkId is included
-      name: `${data.first_name || ""} ${data.last_name || ""}`.trim() || data.email_addresses[0]?.email_address || "Unknown", // Construct name or fallback to email
-      avatar: data.image_url || undefined, // Use undefined instead of null
-      color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 75%)`, // Generate a random color
-      createdAt: Date.now(), // Add createdAt timestamp
-      updatedAt: Date.now(), // Add updatedAt timestamp
-    };
+  clerkId: data.id,
+  name:
+    `${data.first_name || ""} ${data.last_name || ""}`.trim() ||
+    data.email_addresses?.[0]?.email_address ||
+    "Unknown",
+  avatar: data.image_url || undefined,
+  color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 75%)`,
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  organizationId:  undefined,
+  organizationName:  undefined,
+  organizationRole:  undefined,
+};
 
     const user = await userByExternalId(ctx, data.id);
     if (user === null) {
