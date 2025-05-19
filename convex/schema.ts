@@ -44,4 +44,23 @@ export default defineSchema({
       searchField: "name", // Поиск по имени пользователя
       filterFields: ["organizationId", "clerkId"],
     }),
+    organizations: defineTable({
+  clerkId: v.string(),
+  name: v.string(),
+  slug: v.string(),
+  logo: v.optional(v.string()),
+  image: v.optional(v.string()),
+  createdAt: v.number(),
+  updatedAt: v.number(),
+}).index("by_clerkId", ["clerkId"]),
+
+memberships: defineTable({
+  clerkId: v.string(),
+  organizationId: v.string(),
+  userId: v.string(),
+  role: v.string(),
+  createdAt: v.number(),
+  updatedAt: v.number(),
+}).index("by_clerkId", ["clerkId"]),
+
   });

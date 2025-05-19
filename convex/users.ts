@@ -22,9 +22,6 @@ export const upsertFromClerk = internalMutation({
   color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 75%)`,
   createdAt: Date.now(),
   updatedAt: Date.now(),
-  organizationId:  undefined,
-  organizationName:  undefined,
-  organizationRole:  undefined,
 };
 
     const user = await userByExternalId(ctx, data.id);

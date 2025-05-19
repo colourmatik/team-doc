@@ -15,6 +15,8 @@ import type {
 } from "convex/server";
 import type * as documents from "../documents.js";
 import type * as http from "../http.js";
+import type * as memberships from "../memberships.js";
+import type * as organizations from "../organizations.js";
 import type * as users from "../users.js";
 import type * as validateClerkWebhook from "../validateClerkWebhook.js";
 
@@ -29,6 +31,8 @@ import type * as validateClerkWebhook from "../validateClerkWebhook.js";
 declare const fullApi: ApiFromModules<{
   documents: typeof documents;
   http: typeof http;
+  memberships: typeof memberships;
+  organizations: typeof organizations;
   users: typeof users;
   validateClerkWebhook: typeof validateClerkWebhook;
 }>;

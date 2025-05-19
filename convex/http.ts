@@ -12,23 +12,50 @@ http.route({
   handler: httpAction(async (ctx, request) => {
     const event = await validateRequest(request);
     if (!event) {
-      return new Response("Error occured", { status: 400 });
+      return new Response("Error occurred", { status: 400 });
     }
-    switch (event.type) {
-      case "user.created": // intentional fallthrough
+
+    const { type, data } = event;
+
+    switch (type) {
+      // === Users ===
+      case "user.created":
       case "user.updated":
-        await ctx.runMutation(internal.users.upsertFromClerk, {
-          data: event.data,
+        await ctx.runMutation(internal.users.upsertFromClerk, { data });
+        break;
+
+      case "user.deleted":
+        await ctx.runMutation(internal.users.deleteFromClerk, {
+          clerkUserId: data.id!,
         });
         break;
 
-      case "user.deleted": {
-        const clerkUserId = event.data.id!;
-        await ctx.runMutation(internal.users.deleteFromClerk, { clerkUserId });
+      // === Organizations ===
+      case "organization.created":
+      case "organization.updated":
+        await ctx.runMutation(internal.organizations.upsertOrganizationFromClerk, { data });
         break;
-      }
+
+      case "organization.deleted":
+        await ctx.runMutation(internal.organizations.deleteOrganizationFromClerk, {
+          clerkId: data.id!,
+        });
+        break;
+
+      // === Memberships ===
+      case "organizationMembership.created":
+      case "organizationMembership.updated":
+        await ctx.runMutation(internal.memberships.upsertMembershipFromClerk, { data });
+        break;
+
+      case "organizationMembership.deleted":
+        await ctx.runMutation(internal.memberships.deleteMembershipFromClerk, {
+          clerkId: data.id,
+        });
+        break;
+
       default:
-        console.log("Ignored Clerk webhook event", event.type);
+        console.log("Ignored Clerk webhook event:", type);
     }
 
     return new Response(null, { status: 200 });
