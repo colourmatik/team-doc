@@ -60,14 +60,14 @@ export const DocumentsTable = ({
   const renderSortIndicator = (field: SortField) => {
     if (sortField !== field) return null;
     return (
-      <span className="ml-1 text-xs text-foreground">
+      <span className="ml-1 text-xs text-muted-foreground ">
         {sortDirection === "asc" ? "↑" : "↓"}
       </span>
     );
   };
 
   const sortableHeadClass =
-    "cursor-pointer hover:text-primary hover:underline transition-colors";
+    "bg-[#d3e2f0] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 rounded-full px-5 py-2.5 me-2 mb-2 hover: transition-colors";
 
   return (
     <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-5">
@@ -87,7 +87,7 @@ export const DocumentsTable = ({
                 {renderSortIndicator("title")}
               </TableHead>
               <TableHead>&nbsp;</TableHead>
-              <TableHead className="hidden md:table-cell">Поделился</TableHead>
+              <TableHead className="hidden md:table-cell">Создатель</TableHead>
               <TableHead
                 className={`hidden md:table-cell ${sortableHeadClass}`}
                 onClick={() => toggleSort("created")}

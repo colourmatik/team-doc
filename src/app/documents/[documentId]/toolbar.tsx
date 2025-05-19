@@ -4,7 +4,7 @@ import {useState} from "react";
 import { cn } from "@/lib/utils";
 import {Separator} from "@/components/ui/separator"
 import { useEditorStore } from "@/store/use-editor-store";
-import {LucideIcon, SpellCheckIcon,  Redo2Icon, PrinterIcon, Undo2Icon, BoldIcon, ItalicIcon, UnderlineIcon, MessageSquarePlusIcon, ListTodoIcon, RemoveFormattingIcon, ChevronDownIcon, HighlighterIcon, Link2Icon, ImageIcon, UploadIcon, SearchIcon, AlignLeftIcon, AlignCenterIcon, AlignRightIcon, AlignJustifyIcon, ListIcon, ListOrderedIcon, MinusIcon, PlusIcon, ListCollapseIcon} from "lucide-react";
+import {LucideIcon, SpellCheckIcon, PrinterIcon, BoldIcon, ItalicIcon, UnderlineIcon, MessageSquarePlusIcon, ListTodoIcon, RemoveFormattingIcon, ChevronDownIcon, HighlighterIcon, Link2Icon, ImageIcon, UploadIcon, SearchIcon, AlignLeftIcon, AlignCenterIcon, AlignRightIcon, AlignJustifyIcon, ListIcon, ListOrderedIcon, MinusIcon, PlusIcon, ListCollapseIcon, RedoIcon, UndoIcon} from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {type Level} from "@tiptap/extension-heading";
@@ -550,12 +550,12 @@ export const Toolbar = () => {
         [
             {
             label: "Undo",
-            icon: Undo2Icon,
+            icon: UndoIcon,
             onClick: () => editor?.chain().focus().undo().run(),
             },
             {
                 label:"Redo",
-                icon: Redo2Icon,
+                icon: RedoIcon,
                 onClick: () => editor?.chain().focus().redo().run(),
             },
             {

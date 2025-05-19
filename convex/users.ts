@@ -10,19 +10,24 @@ export const current = query({
 });
 
 export const upsertFromClerk = internalMutation({
-  args: { data: v.any() as Validator<UserJSON> }, // no runtime validation, trust Clerk
+  args: { data: v.any() as Validator<UserJSON> },
   async handler(ctx, { data }) {
+    const firstName = data.first_name ?? "";
+    const lastName = data.last_name ?? "";
+    const username = data.username ?? data.email_addresses?.[0]?.email_address ?? "unknown";
+    const email = data.email_addresses?.[0]?.email_address ?? "unknown@example.com";
+
     const userAttributes = {
-  clerkId: data.id,
-  name:
-    `${data.first_name || ""} ${data.last_name || ""}`.trim() ||
-    data.email_addresses?.[0]?.email_address ||
-    "Unknown",
-  avatar: data.image_url || undefined,
-  color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 75%)`,
-  createdAt: Date.now(),
-  updatedAt: Date.now(),
-};
+      clerkId: data.id,
+      firstName,
+      lastName,
+      email,
+      username,
+      avatar: data.image_url || undefined,
+      color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 75%)`,
+      createdAt: data.created_at || Date.now(),
+      updatedAt: Date.now(),
+    };
 
     const user = await userByExternalId(ctx, data.id);
     if (user === null) {
@@ -41,9 +46,7 @@ export const deleteFromClerk = internalMutation({
     if (user !== null) {
       await ctx.db.delete(user._id);
     } else {
-      console.warn(
-        `Can't delete user, there is none for Clerk user ID: ${clerkUserId}`,
-      );
+      console.warn(`Can't delete user, there is none for Clerk user ID: ${clerkUserId}`);
     }
   },
 });
@@ -65,6 +68,6 @@ export async function getCurrentUser(ctx: QueryCtx) {
 async function userByExternalId(ctx: QueryCtx, externalId: string) {
   return await ctx.db
     .query("users")
-    .withIndex("by_clerkId", (q) => q.eq("clerkId", externalId)) // Use the correct index and field
+    .withIndex("by_clerkId", (q) => q.eq("clerkId", externalId))
     .unique();
 }

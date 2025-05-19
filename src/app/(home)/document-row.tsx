@@ -29,12 +29,15 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
             </TableCell>
             <TableCell className="text-muted-foreground hidden md:flex items-center gap-2">
                 {document.organizationId ? <Building2Icon className="size-4" /> : <CircleUserIcon className="size-4" />}
-                {document.organizationId ? `${document.organizationName}` : `${document.ownerName}`}
+                {document.ownerName}
+            </TableCell>
+            <TableCell className="text-muted-foreground hidden md:flex items-center gap-2">
+                {document.organizationId ? `В рамках ${document.organizationName}` : `Личный документ`}
             </TableCell>
             <TableCell className="text-muted-foreground hidden md:table-cell">
-                {format(new Date(document._creationTime), "dd MMMM, yyyy HH:mm", { locale: ru })}
+                {format(new Date(document._creationTime), "dd.MM.yyyy HH:mm", { locale: ru })}
             </TableCell>
-            <TableCell className="flex justify-end">
+            <TableCell className="items-center justify-end">
                 <DocumentMenu documentId={document._id} title={document.title} onNewTab={onNewTabClick} />
             </TableCell>
         </TableRow>

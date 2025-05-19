@@ -106,6 +106,11 @@ export const removeById = mutation ({
     | string
     | undefined;
 
+    const membership = await ctx.db
+      .query("memberships")
+      .withIndex("by_clerkId", (q) => q.eq("clerkId", user.subject))
+      .unique();
+
     const document = await ctx.db.get(args.id);
 
     if (!document){
@@ -113,10 +118,10 @@ export const removeById = mutation ({
     }
 
     const isOwner = document.ownerId === user.subject;
-    const isOrganizationMember = 
-    !!(document.organizationId && document.organizationId === organizationId);
+    const isOrganizationMember = !!(document.organizationId && document.organizationId === organizationId);
+    const isAdmin = membership?.role === "admin";
 
-    if (!isOwner && !isOrganizationMember) {
+    if (!isOwner && !isAdmin && isOrganizationMember) {
       throw new ConvexError("Unauthorized")
     }
 

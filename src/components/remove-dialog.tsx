@@ -38,7 +38,7 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
       await remove({ id: documentId });
       toast.success("Документ успешно удален");
     } catch {
-      toast.error("Вы не являетесь владельцем документа");
+      toast.error("Вы не являетесь владельцем документа/админом");
     } finally {
       setIsRemoving(false);
     }
