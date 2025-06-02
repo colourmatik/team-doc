@@ -27,7 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={ruRU}>
+    <ClerkProvider 
+    localization={ruRU}
+    appearance={{
+    layout: {
+      unsafe_disableDevelopmentModeWarnings: true,
+    },
+  }}
+    >
     <html lang="ru">
       <body
         className={inter.className}
