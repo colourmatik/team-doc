@@ -12,7 +12,6 @@ export const Navbar = () => {
                 </Link>
                 <h3 className="text-xl">TeamDoc</h3>
             </div>
-            
             <SearchInput/>
             <div className="flex gap-3 items-center pl-6">
             <OrganizationSwitcher

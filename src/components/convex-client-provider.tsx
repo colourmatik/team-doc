@@ -5,15 +5,16 @@ import {ConvexReactClient, Authenticated, Unauthenticated, AuthLoading} from "co
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 import {ClerkProvider, useAuth, SignIn} from "@clerk/nextjs";
 import { FullscreenLoader } from "./fullscreen-loader";
+import { ruRU } from "@clerk/localizations";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 export function ConvexClientProvider({children}: {children:ReactNode}) {
     return(
-        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}>
+        <ClerkProvider localization={ruRU} publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}>
          <ConvexProviderWithClerk
           useAuth={useAuth} 
-          client={convex}
+          client={convex}   
           >
             <Authenticated>
             {children}

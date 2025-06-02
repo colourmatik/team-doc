@@ -13,7 +13,7 @@ export const upsertMembershipFromClerk = internalMutation({
       clerkId: data.id,
       organizationId: data.organization.id,
       userId: data.public_user_data.user_id,
-      userIdentifier: data.public_user_data.identifier,
+      userEmail: data.public_user_data.identifier,
       role: data.role,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
