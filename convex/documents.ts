@@ -76,16 +76,23 @@ export const get = query({
     }
 
     if (organizationId) {
-      return await ctx.db
-      .query("documents")
-      .withIndex("by_organization_id", (q) => q.eq("organizationId", organizationId))
-      .paginate(paginationOpts);
-    }
+  return await ctx.db
+    .query("documents")
+    .withIndex("by_organization_id", (q) =>
+      q.eq("organizationId", organizationId)
+    )
+    .order("desc")
+    .paginate(paginationOpts);
+}
 
-      return await ctx.db
-      .query("documents")
-      .withIndex("by_owner_id", (q) => q.eq("ownerId", user.subject))
-      .paginate(paginationOpts);
+return await ctx.db
+  .query("documents")
+  .withIndex("by_owner_id", (q) =>
+    q.eq("ownerId", user.subject)
+  )
+  .order("desc")
+  .paginate(paginationOpts);
+
     },
   });
 

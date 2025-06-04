@@ -30,23 +30,25 @@ export const DocumentsTable = ({
   const [sortField, setSortField] = useState<SortField>("created");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
-  const sortedDocuments = useMemo(() => {
-    if (!documents) return [];
-    return [...documents].sort((a, b) => {
-      let aValue, bValue;
+const sortedDocuments = useMemo(() => {
+  if (!documents) return [];
 
-      if (sortField === "title") {
-        aValue = a.title.toLowerCase();
-        bValue = b.title.toLowerCase();
-      } else {
-        aValue = new Date(a._creationTime).getTime();
-        bValue = new Date(b._creationTime).getTime();
-      }
+  return [...documents].sort((a, b) => {
+    let aValue, bValue;
 
-      const comparison = aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
-      return sortDirection === "asc" ? comparison : -comparison;
-    });
-  }, [documents, sortField, sortDirection]);
+    if (sortField === "title") {
+      aValue = a.title.toLowerCase();
+      bValue = b.title.toLowerCase();
+    } else {
+      aValue = a._creationTime;
+      bValue = b._creationTime;
+    }
+
+    const comparison = aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
+    return sortDirection === "asc" ? comparison : -comparison;
+  });
+}, [documents, sortField, sortDirection]);
+
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) {
