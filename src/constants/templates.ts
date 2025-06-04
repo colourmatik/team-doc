@@ -3,7 +3,7 @@ export const templates = [
     "id": "blank-document",
     "label": "Пустой документ",
     "imageUrl": "blank-document.png",
-    "initialContent": "<p><br/></p>"
+    "initialContent": ""
   },
   {
     "id": "resume",
