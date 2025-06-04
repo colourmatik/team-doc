@@ -57,7 +57,7 @@ export const templates = [
     "id": "to-do-list",
     "label": "Список задач",
     "imageUrl": "to-do-list.png",
-    "initialContent": "<h1>Список задач</h1>\n<ul>\n  <li><input type='checkbox'/> [Задача 1]</li>\n  <li><input type='checkbox'/> [Задача 2]</li>\n  <li><input type='checkbox'/> [Задача 3]</li>\n</ul>"
+    "initialContent": `<h1>Список задач</h1>\n<ul data-type="taskList">\n  <li data-type="taskItem" data-checked="false">[Задача 1]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 2]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 3]</li>\n</ul>`
   },
   {
     "id": "newsletter",
