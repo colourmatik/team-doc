@@ -145,7 +145,6 @@ export const Navbar = ({ data }: NavbarProps) => {
         data: buffer,
         transformation: { width: 400, height: 300 },
       });
-      // Важно: оборачиваем ImageRun в Paragraph
       blocks.push(new Paragraph({ children: [image] }));
       return blocks;
     } catch (err) {

@@ -18,7 +18,6 @@ http.route({
     const { type, data } = event;
 
     switch (type) {
-      // === Users ===
       case "user.created":
       case "user.updated":
         await ctx.runMutation(internal.users.upsertFromClerk, { data });
@@ -30,7 +29,6 @@ http.route({
         });
         break;
 
-      // === Organizations ===
       case "organization.created":
       case "organization.updated":
         await ctx.runMutation(internal.organizations.upsertOrganizationFromClerk, { data });
@@ -42,7 +40,6 @@ http.route({
         });
         break;
 
-      // === Memberships ===
       case "organizationMembership.created":
       case "organizationMembership.updated":
         await ctx.runMutation(internal.memberships.upsertMembershipFromClerk, { data });

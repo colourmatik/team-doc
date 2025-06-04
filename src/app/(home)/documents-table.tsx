@@ -67,7 +67,7 @@ export const DocumentsTable = ({
   };
 
   const sortableHeadClass =
-    "bg-[#d3e2f0] focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 rounded-full px-5 py-2.5 me-2 mb-2 hover: transition-colors";
+    "bg-[#d3e2f0] cursor-pointer focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 rounded-full px-5 py-2.5 me-2 mb-2 hover: transition-colors";
 
   return (
     <div className="max-w-screen-xl mx-auto px-16 py-6 flex flex-col gap-5">

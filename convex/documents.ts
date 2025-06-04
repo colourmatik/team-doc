@@ -26,7 +26,7 @@ export const create = mutation({
   handler: async(ctx, args) => {
     const user = await ctx.auth.getUserIdentity();
     if (!user) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -50,14 +50,13 @@ export const get = query({
       const user = await ctx.auth.getUserIdentity();
 
         if (!user) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
     | string
     | undefined;
 
-    //Поиск внутри организации
     if (search && organizationId) {
       return await ctx.db 
       .query("documents")
@@ -67,7 +66,6 @@ export const get = query({
     .paginate(paginationOpts)
     }
 
-    //Поиск личных документов
     if (search) {
       return await ctx.db
       .query("documents")
@@ -77,7 +75,6 @@ export const get = query({
       .paginate(paginationOpts)
     }
 
-    //Все документы по органищации
     if (organizationId) {
       return await ctx.db
       .query("documents")
@@ -85,7 +82,6 @@ export const get = query({
       .paginate(paginationOpts);
     }
 
-    //Все  личные документы
       return await ctx.db
       .query("documents")
       .withIndex("by_owner_id", (q) => q.eq("ownerId", user.subject))
@@ -99,7 +95,7 @@ export const removeById = mutation ({
     const user = await ctx.auth.getUserIdentity();
 
     if (!user) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -122,7 +118,7 @@ export const removeById = mutation ({
     const isAdmin = membership?.role === "admin";
 
     if (!isOwner && !isAdmin && isOrganizationMember) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     return await ctx.db.delete(args.id);
@@ -135,7 +131,7 @@ export const updateById = mutation ({
     const user = await ctx.auth.getUserIdentity();
 
     if (!user) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -147,14 +143,13 @@ export const updateById = mutation ({
     if (!document){
       throw new ConvexError("Document not found");
     }
-//роли 718
     const isOwner = document.ownerId === user.subject;
     const isOrganizationMember = 
     !!(document.organizationId && document.organizationId === organizationId);
 
 
     if (!isOwner && !isOrganizationMember) {
-      throw new ConvexError("Unauthorized")
+      throw new ConvexError("Отсутствует авторизация")
     }
 
     return await ctx.db.patch(args.id, {title: args.title});

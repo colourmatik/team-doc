@@ -16,7 +16,7 @@ const DocumentIdPage = async ({ params }: DocumentIdPageProps) => {
   const token = await getToken({ template: "convex" }) ?? undefined;
 
   if (!token) {
-    throw new Error("Unauthorized");
+    throw new Error("Отсутствует авторизация");
   }
 
   const preloadedDocument = await preloadQuery(
