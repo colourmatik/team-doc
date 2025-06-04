@@ -402,7 +402,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                                             </MenubarItem>
                                             <MenubarItem onClick={() => editor?.chain().focus().toggleStrike().run()}>
                                                 <StrikethroughIcon className="size-5 mr-2"/>
-                                                <span>Зачеркнутый&nbsp;&nbsp;</span> <MenubarShortcut>Alt+Shift+5</MenubarShortcut>
+                                                <span>Зачеркнутый&nbsp;&nbsp;</span> <MenubarShortcut>Ctrl+Shift+U</MenubarShortcut>
                                             </MenubarItem>
                                         </MenubarSubContent>
                                     </MenubarSub>

@@ -23,7 +23,7 @@ import { useStorage } from "@liveblocks/react/suspense";
 import { useEditorStore } from '@/store/use-editor-store';
 import { FontSizeExtension } from '@/extensions/font-size';
 import { LineHeightExtension } from '@/extensions/line-height';
-
+import Strike from "@tiptap/extension-strike";
 import {Ruler} from './ruler'
 import { Threads } from './threads';
 import { RIGHT_MARGIN_DEFAULT, LEFT_MARGIN_DEFAULT } from "@/constants/margins";
@@ -48,7 +48,13 @@ export const Editor = ({initialContent, documentId}: EditorProps) => {
   },
   1000
 );
-
+  const CustomStrike = Strike.extend({
+   addKeyboardShortcuts() {
+     return {
+        "Mod-Shift-u": () => this.editor.commands.toggleStrike(),
+      };
+    },
+  });
   const liveblocks = useLiveblocksExtension({
     initialContent,
     offlineSupport_experimental: true,
@@ -63,9 +69,11 @@ export const Editor = ({initialContent, documentId}: EditorProps) => {
             },
         },
         extensions: [
+            CustomStrike,
             liveblocks,
             StarterKit.configure({
               history:false,
+              strike: false,
             }),
             LineHeightExtension,
             FontSizeExtension,
