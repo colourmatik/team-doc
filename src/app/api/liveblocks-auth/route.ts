@@ -12,27 +12,29 @@ const liveblocks = new Liveblocks({
 export async function POST(req: Request) {
   const { sessionClaims } = await auth();
   if (!sessionClaims) {
-    return new Response("Отсутствует авторизация", { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
 
   const user = await currentUser();
   if (!user) {
-    return new Response("Отсутствует авторизация", { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
 
   const { room } = await req.json();
   const document = await convex.query(api.documents.getById, { id: room });
 
   if (!document) {
-    return new Response("Отсутствует авторизация", { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
+const orgId = typeof sessionClaims === "object" && sessionClaims && "o" in sessionClaims && typeof sessionClaims.o === "object"
+  ? (sessionClaims.o as { id?: string }).id
+  : undefined;
 
   const isOwner = document.ownerId === user.id;
-  const isOrganizationMember = 
-    !!(document.organizationId && document.organizationId === sessionClaims.org_id);
+  const isOrganizationMember = !!(document.organizationId && orgId && document.organizationId === orgId);
 
   if (!isOwner && !isOrganizationMember) {
-    return new Response("Отсутствует авторизация", { status: 401 });
+    return new Response("Unauthorized", { status: 401 });
   }
 
   const name = user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";

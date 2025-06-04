@@ -26,7 +26,7 @@ export const create = mutation({
   handler: async(ctx, args) => {
     const user = await ctx.auth.getUserIdentity();
     if (!user) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -50,7 +50,7 @@ export const get = query({
       const user = await ctx.auth.getUserIdentity();
 
         if (!user) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -102,7 +102,7 @@ export const removeById = mutation ({
     const user = await ctx.auth.getUserIdentity();
 
     if (!user) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -125,7 +125,7 @@ export const removeById = mutation ({
     const isAdmin = membership?.role === "admin";
 
     if (!isOwner && !isAdmin && isOrganizationMember) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     return await ctx.db.delete(args.id);
@@ -138,7 +138,7 @@ export const updateById = mutation ({
     const user = await ctx.auth.getUserIdentity();
 
     if (!user) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     const organizationId = (user.organization_id ?? undefined) as 
@@ -156,7 +156,7 @@ export const updateById = mutation ({
 
 
     if (!isOwner && !isOrganizationMember) {
-      throw new ConvexError("Отсутствует авторизация")
+      throw new ConvexError("Unauthorized")
     }
 
     return await ctx.db.patch(args.id, {title: args.title});

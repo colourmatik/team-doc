@@ -40,16 +40,29 @@ export function Room({ children }: { children: ReactNode }) {
     <LiveblocksProvider 
       throttle={16}
       authEndpoint={async () => {
-        const endpoint = "/api/liveblocks-auth";
-        const room = params.documentId as string;
+  const endpoint = "/api/liveblocks-auth";
+  const room = params.documentId as string;
 
-        const response = await fetch(endpoint, {
-          method: "POST",
-          body: JSON.stringify({room}),
-        });
+  const response = await fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify({ room }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include", 
+  });
 
-        return await response.json();
-      }}
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    console.error("Liveblocks auth error", error);
+    throw new Error(error?.error ?? "Не удалось авторизоваться в Liveblocks");
+  }
+
+  return await response.json();
+}}
+
+
       resolveUsers={({userIds}) => {
         return userIds.map(
           (userId) => users.find((user) => user.id ==userId) ?? undefined
