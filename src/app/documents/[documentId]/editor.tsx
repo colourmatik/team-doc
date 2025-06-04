@@ -12,7 +12,7 @@ import Image from '@tiptap/extension-image'
 import ImageResize from 'tiptap-extension-resize-image'
 import TextAlign from '@tiptap/extension-text-align'
 import StarterKit from '@tiptap/starter-kit'
-import {useEditor, EditorContent} from '@tiptap/react'
+import {useEditor, EditorContent, JSONContent} from '@tiptap/react'
 import TextStyle from '@tiptap/extension-text-style';
 import Highlight from '@tiptap/extension-highlight'
 import { Color } from '@tiptap/extension-color';
@@ -27,15 +27,28 @@ import { LineHeightExtension } from '@/extensions/line-height';
 import {Ruler} from './ruler'
 import { Threads } from './threads';
 import { RIGHT_MARGIN_DEFAULT, LEFT_MARGIN_DEFAULT } from "@/constants/margins";
+import { useMutation } from 'convex/react';
+import { useDebounce } from '@/hooks/use-debounce';
+import { api } from '../../../../convex/_generated/api';
+import { Id } from '../../../../convex/_generated/dataModel';
 
 
 interface EditorProps{
   initialContent?:string | undefined;
+  documentId: Id<"documents">;
 }
 
-export const Editor = ({initialContent}: EditorProps) => {
+export const Editor = ({initialContent, documentId}: EditorProps) => {
   const leftMargin = useStorage((root) => root.leftMargin) ?? LEFT_MARGIN_DEFAULT;
   const rightMargin = useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT;
+  const saveContent = useMutation(api.documents.updateContent);
+  const debouncedSave = useDebounce(
+  (json: JSONContent) => {
+    saveContent({ id: documentId, content: JSON.stringify(json) });
+  },
+  1000
+);
+
   const liveblocks = useLiveblocksExtension({
     initialContent,
     offlineSupport_experimental: true,
@@ -92,6 +105,8 @@ export const Editor = ({initialContent}: EditorProps) => {
         },
         onUpdate({editor}){
           setEditor(editor)
+          const json = editor.getJSON();
+          debouncedSave(json);
         },
         onSelectionUpdate({editor}){
           setEditor(editor)
