@@ -2,7 +2,7 @@ export const templates = [
   {
     "id": "blank-document",
     "label": "Пустой документ",
-    "imageUrl": "blank-document.png",
+    "imageUrl": "blank-document.svg",
     "initialContent": ""
   },
   {
@@ -54,9 +54,9 @@ export const templates = [
     "initialContent": "<h1>Протокол встречи</h1>\n<p><strong>Дата:</strong> [Дата встречи]<br/>\n<strong>Время:</strong> [Время встречи]<br/>\n<strong>Место:</strong> [Место проведения]</p>\n<p><strong>Присутствовали:</strong> [Список участников]</p>\n<h2>Повестка дня</h2>\n<ul>\n  <li>[Пункт 1]</li>\n  <li>[Пункт 2]</li>\n</ul>\n<h2>Обсуждение</h2>\n<p>[Основные тезисы обсуждения...]</p>\n<h2>Принятые решения</h2>\n<ul>\n  <li>[Решение 1]</li>\n  <li>[Решение 2]</li>\n</ul>\n<h2>Задачи и ответственные</h2>\n<ul>\n  <li>[Задача 1] – [Ответственный]</li>\n  <li>[Задача 2] – [Ответственный]</li>\n</ul>\n<p><strong>Секретарь:</strong> [Имя Фамилия]</p>"
   },
   {
-    "id": "to-do-list",
+    "id": "tasklist",
     "label": "Список задач",
-    "imageUrl": "to-do-list.png",
+    "imageUrl": "tasklist.png",
     "initialContent": `<h1>Список задач</h1>\n<ul data-type="taskList">\n  <li data-type="taskItem" data-checked="false">[Задача 1]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 2]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 3]</li>\n</ul>`
   },
   {
