@@ -3,9 +3,10 @@
 import {ReactNode} from "react";
 import {ConvexReactClient, Authenticated, Unauthenticated, AuthLoading} from "convex/react";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
-import {ClerkProvider, useAuth, SignIn} from "@clerk/nextjs";
+import {ClerkProvider, useAuth} from "@clerk/nextjs";
 import { FullscreenLoader } from "./fullscreen-loader";
 import { ruRU } from "@clerk/localizations";
+import AuthSwitcher from "./auth-switcher";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -21,7 +22,7 @@ export function ConvexClientProvider({children}: {children:ReactNode}) {
             </Authenticated>
             <Unauthenticated>
            <div className="flex flex-col items-center justify-center min-h-screen">
-            <SignIn routing="hash"/>
+            <AuthSwitcher />
            </div>
             </Unauthenticated>
             <AuthLoading>
