@@ -175,15 +175,3 @@ export const getById = query ({
     return document;
   },
 });
-
-export const updateContent = mutation({
-  args: {
-    id: v.id("documents"),
-    content: v.string(),
-  },
-  handler: async (ctx, { id, content }) => {
-    await ctx.db.patch(id, {
-      initialContent: content,
-    });
-  },
-});
