@@ -60,13 +60,14 @@ const sortedDocuments = useMemo(() => {
   };
 
   const renderSortIndicator = (field: SortField) => {
-    if (sortField !== field) return null;
-    return (
-      <span className="ml-1 text-xs text-muted-foreground ">
-        {sortDirection === "asc" ? "↑" : "↓"}
-      </span>
-    );
-  };
+  const isActive = sortField === field;
+  return (
+    <span className="w-4 h-4 ml-1 text-xs text-muted-foreground flex items-center justify-center">
+      {isActive ? (sortDirection === "asc" ? "↑" : "↓") : null}
+    </span>
+  );
+};
+
 
   const sortableHeadClass =
     "bg-[#d3e2f0] cursor-pointer focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 rounded-full px-5 py-2.5 me-2 mb-2 hover: transition-colors";
@@ -85,8 +86,10 @@ const sortedDocuments = useMemo(() => {
                 className={sortableHeadClass}
                 onClick={() => toggleSort("title")}
               >
+                <span className="flex items-center">
                 Имя
                 {renderSortIndicator("title")}
+                </span>
               </TableHead>
               <TableHead>&nbsp;</TableHead>
               <TableHead className="hidden md:table-cell">Создатель</TableHead>
@@ -94,8 +97,10 @@ const sortedDocuments = useMemo(() => {
                 className={`hidden md:table-cell ${sortableHeadClass}`}
                 onClick={() => toggleSort("created")}
               >
+                <span className="flex items-center">
                 Дата создания
                 {renderSortIndicator("created")}
+                </span>
               </TableHead>
             </TableRow>
           </TableHeader>
