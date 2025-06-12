@@ -10,9 +10,9 @@ const appearanceWithoutFooter = {
     input: {
       '::placeholder': {
         color: 'transparent',
-        },
+      },
     },
- },
+  },
 };
 
 export default function AuthSwitcher() {
@@ -31,17 +31,17 @@ export default function AuthSwitcher() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#D3E2F0] px-4">
       {mode === "signIn" ? (
         <div className="flex flex-col items-center">
           <SignIn routing="virtual" appearance={appearanceWithoutFooter} />
           <div className="mt-4 text-sm text-gray-600">
             Нет учётной записи?{" "}
             <button
-            onClick={() => setMode("signUp")}
+              onClick={() => setMode("signUp")}
               className="
                 inline-flex items-center justify-center
-                 px-3 py-[6px]
+                px-3 py-[6px]
                 text-sm font-medium text-white
                 bg-[#3D3E45] hover:bg-[#3B3C45]
                 border border-[#2F3037]
@@ -49,13 +49,10 @@ export default function AuthSwitcher() {
                 shadow-[inset_0_1px_1px_rgba(255,255,255,0.07),_0_2px_3px_rgba(34,42,53,0.2),_0_1px_1px_rgba(0,0,0,0.24)]
                 transition-all duration-100
                 cursor-pointer select-none
-                isolate relative
               "
             >
-  Зарегистрироваться
-</button>
-
-
+              Зарегистрироваться
+            </button>
           </div>
         </div>
       ) : (
@@ -64,11 +61,10 @@ export default function AuthSwitcher() {
           <div className="mt-4 text-sm text-gray-600">
             Уже есть учётная запись?{" "}
             <button
-              
               onClick={() => setMode("signIn")}
-                 className="
+              className="
                 inline-flex items-center justify-center
-                 px-3 py-[6px]
+                px-3 py-[6px]
                 text-sm font-medium text-white
                 bg-[#3D3E45] hover:bg-[#3B3C45]
                 border border-[#2F3037]
@@ -76,8 +72,7 @@ export default function AuthSwitcher() {
                 shadow-[inset_0_1px_1px_rgba(255,255,255,0.07),_0_2px_3px_rgba(34,42,53,0.2),_0_1px_1px_rgba(0,0,0,0.24)]
                 transition-all duration-100
                 cursor-pointer select-none
-                isolate relative
-              "           
+              "
             >
               Войти
             </button>
