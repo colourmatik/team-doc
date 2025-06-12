@@ -2,67 +2,67 @@ export const templates = [
   {
     "id": "blank-document",
     "label": "Пустой документ",
-    "imageUrl": "blank-document.svg",
+    "imageUrl": "/images/blank-document.svg",
     "initialContent": ""
   },
   {
     "id": "resume",
     "label": "Резюме",
-    "imageUrl": "resume.png",
-    "initialContent": "<h1>Имя Фамилия</h1>\n<p>[Город] | [Телефон] | [Email]</p>\n<h2>Обо мне</h2>\n<p>[Краткое описание опыта и навыков, 2-3 предложения]</p>\n<h2>Опыт работы</h2>\n<p><strong>[Год–Год]</strong> — <strong>[Должность]</strong> в [Компания]<br/>[Краткое описание достижений / обязанностей]</p>\n<p><strong>[Год–Год]</strong> — <strong>[Должность]</strong> в [Компания]<br/>[Краткое описание достижений / обязанностей]</p>\n<h2>Образование</h2>\n<p><strong>[Год–Год]</strong> — [Учебное заведение], [Специальность]</p>\n<p><strong>[Год–Год]</strong> — [Учебное заведение], [Специальность]</p>\n<h2>Навыки</h2>\n<ul>\n  <li>[Навык 1]</li>\n  <li>[Навык 2]</li>\n  <li>[Навык 3]</li>\n</ul>"
+    "imageUrl": "/images/resume.png",
+    "initialContent": "<h1>Имя Фамилия</h1>\n<h1>[Город] | [Телефон] | [Email]</h1>\n<h2>Обо мне</h2>\n<p>[Краткое описание опыта и навыков, 2-3 предложения]</p>\n<h2>Опыт работы</h2>\n<p><strong>[Год–Год]</strong> — <strong>[Должность]</strong> в [Компания]<br/>[Краткое описание достижений / обязанностей]</p>\n<p><strong>[Год–Год]</strong> — <strong>[Должность]</strong> в [Компания]<br/>[Краткое описание достижений / обязанностей]</p>\n<h2>Образование</h2>\n<p><strong>[Год–Год]</strong> — [Учебное заведение], [Специальность]</p>\n<p><strong>[Год–Год]</strong> — [Учебное заведение], [Специальность]</p>\n<h2>Навыки</h2>\n<ul>\n  <li>[Навык 1]</li>\n  <li>[Навык 2]</li>\n  <li>[Навык 3]</li>\n</ul>"
   },
   {
     "id": "letter",
     "label": "Письмо",
-    "imageUrl": "letter.png",
+    "imageUrl": "/images/letter.png",
     "initialContent": "<p>[Город], [Дата]</p>\n<p>Здравствуйте, [Имя]!</p>\n<p>[Текст письма...]</p>\n<p>С уважением,<br/>[Ваше имя]</p>"
   },
   {
     "id": "software-proposal",
     "label": "Предложение по разработке ПО",
-    "imageUrl": "software-proposal.png",
+    "imageUrl": "/images/software-proposal.png",
     "initialContent": "<h1>Предложение по разработке ПО</h1>\n<p><strong>Проект:</strong> [Название проекта]<br/>\n<strong>Заказчик:</strong> [Имя заказчика / организация]<br/>\n<strong>Исполнитель:</strong> [Ваша компания]</p>\n<h2>Обзор</h2>\n<p>[Краткое описание целей и задач разработки...]</p>\n<h2>Предлагаемое решение</h2>\n<p>[Описание предлагаемого программного решения...]</p>\n<h2>Этапы реализации</h2>\n<ol>\n  <li>[Этап 1: описание]</li>\n  <li>[Этап 2: описание]</li>\n</ol>\n<h2>Сроки и бюджет</h2>\n<p>[Оценка сроков выполнения и бюджета проекта...]</p>\n<h2>Заключение</h2>\n<p>[Контактная информация и заключительные слова...]</p>"
   },
   {
     "id": "project-proposal",
     "label": "Проектное предложение",
-    "imageUrl": "project-proposal.png",
+    "imageUrl": "/images/project-proposal.png",
     "initialContent": "<h1>Проектное предложение</h1>\n<p><strong>Проект:</strong> [Название проекта]<br/>\n<strong>Автор:</strong> [Ваше имя, должность]<br/>\n<strong>Дата:</strong> [Дата]</p>\n<h2>Описание проекта</h2>\n<p>[Краткое описание и обоснование проекта...]</p>\n<h2>Цели</h2>\n<ul>\n  <li>[Цель 1]</li>\n  <li>[Цель 2]</li>\n</ul>\n<h2>План реализации</h2>\n<p>[Ключевые этапы выполнения проекта...]</p>\n<h2>Ресурсы и бюджет</h2>\n<p>[Необходимые ресурсы и ожидаемый бюджет...]</p>\n<h2>Заключение</h2>\n<p>[Выводы и следующие шаги...]</p>"
   },
   {
     "id": "cover-letter",
     "label": "Сопроводительное письмо",
-    "imageUrl": "cover-letter.png",
+    "imageUrl": "/images/cover-letter.png",
     "initialContent": "<p>[Ваш телефон] | [Ваш Email]<br/>[Город], [Дата]</p>\n<p>[Имя получателя], [Должность]<br/>\n[Компания получателя]<br/>\n[Адрес получателя]</p>\n<p>Уважаемый [Имя Отчество],</p>\n<p>[Основной текст сопроводительного письма – почему вы подходите для должности, интерес к компании]</p>\n<p>С уважением,<br/>[Имя Фамилия]</p>"
   },
   {
     "id": "business-letter",
     "label": "Бизнес-письмо",
-    "imageUrl": "business-letter.png",
+    "imageUrl": "/images/business-letter.png",
     "initialContent": "<p><strong>[Ваша компания]</strong><br/>\n[Адрес компании отправителя]<br/>\n[Телефон] | [Email]</p>\n<p>[Компания получателя]<br/>\n[Адрес получателя]</p>\n<p>[Город], [Дата]</p>\n<p>Уважаемый [Имя Отчество],</p>\n<p>[Основной текст письма...]</p>\n<p>С уважением,<br/>[Имя Фамилия]<br/>[Должность]</p>"
   },
   {
     "id": "invoice",
     "label": "Счёт-фактура",
-    "imageUrl": "invoice.png",
+    "imageUrl": "/images/invoice.png",
     "initialContent": "<h1>Счёт-фактура</h1>\n<p><strong>Номер:</strong> [Номер счета]<br/>\n<strong>Дата:</strong> [Дата]</p>\n<p><strong>Продавец:</strong> [Название компании продавца, адрес]<br/>\n<strong>Покупатель:</strong> [Название компании покупателя, адрес]</p>\n<table>\n  <thead>\n    <tr>\n      <th>#</th>\n      <th>Описание</th>\n      <th>Кол-во</th>\n      <th>Цена</th>\n      <th>Сумма</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1</td>\n      <td>[Товар/Услуга 1]</td>\n      <td>1</td>\n      <td>[Цена]</td>\n      <td>[Сумма]</td>\n    </tr>\n    <tr>\n      <td>2</td>\n      <td>[Товар/Услуга 2]</td>\n      <td>1</td>\n      <td>[Цена]</td>\n      <td>[Сумма]</td>\n    </tr>\n  </tbody>\n</table>\n<p><strong>Итого:</strong> [Общая сумма]</p>"
   },
   {
     "id": "meeting-minutes",
     "label": "Протокол встречи",
-    "imageUrl": "meeting-minutes.png",
+    "imageUrl": "/images/meeting-minutes.png",
     "initialContent": "<h1>Протокол встречи</h1>\n<p><strong>Дата:</strong> [Дата встречи]<br/>\n<strong>Время:</strong> [Время встречи]<br/>\n<strong>Место:</strong> [Место проведения]</p>\n<p><strong>Присутствовали:</strong> [Список участников]</p>\n<h2>Повестка дня</h2>\n<ul>\n  <li>[Пункт 1]</li>\n  <li>[Пункт 2]</li>\n</ul>\n<h2>Обсуждение</h2>\n<p>[Основные тезисы обсуждения...]</p>\n<h2>Принятые решения</h2>\n<ul>\n  <li>[Решение 1]</li>\n  <li>[Решение 2]</li>\n</ul>\n<h2>Задачи и ответственные</h2>\n<ul>\n  <li>[Задача 1] – [Ответственный]</li>\n  <li>[Задача 2] – [Ответственный]</li>\n</ul>\n<p><strong>Секретарь:</strong> [Имя Фамилия]</p>"
   },
   {
     "id": "tasklist",
     "label": "Список задач",
-    "imageUrl": "tasklist.png",
+    "imageUrl": "/images/tasklist.png",
     "initialContent": `<h1>Список задач</h1>\n<ul data-type="taskList">\n  <li data-type="taskItem" data-checked="false">[Задача 1]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 2]</li>\n  <li data-type="taskItem" data-checked="false">[Задача 3]</li>\n</ul>`
   },
   {
     "id": "newsletter",
     "label": "Рассылка новостей",
-    "imageUrl": "newsletter.png",
+    "imageUrl": "/images/newsletter.png",
     "initialContent": "<h1>[Название рассылки]</h1>\n<p><em>[Дата]</em></p>\n<p>[Приветствие или вступительное слово...]</p>\n<h2>[Заголовок новости 1]</h2>\n<p>[Текст новости 1...]</p>\n<h2>[Заголовок новости 2]</h2>\n<p>[Текст новости 2...]</p>\n<p>[Заключительное обращение или контактная информация]</p>"
   }
 ];
