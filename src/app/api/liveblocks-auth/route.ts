@@ -37,7 +37,12 @@ const orgId = typeof sessionClaims === "object" && sessionClaims && "o" in sessi
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const name = user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous";
+  const name =
+  user.fullName ||
+  user.username ||
+  user.primaryEmailAddress?.emailAddress ||
+  "Anonymous";
+
   const nameToNumber = name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const hue = Math.abs(nameToNumber) % 360;
   const color = `hsl(${hue}, 80%, 60%)`;

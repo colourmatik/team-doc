@@ -63,12 +63,16 @@ export function Room({ children }: { children: ReactNode }) {
 }}
 
 
-      resolveUsers={({userIds}) => {
-        return userIds.map(
-          (userId) => users.find((user) => user.id ==userId) ?? undefined
-        )
-      }}
+      resolveUsers={({ userIds }) => {
+  const resolvedUsers = userIds.map((userId) => {
+    const user = users.find((u) => u.id === userId);
+    return user ?? undefined;
+  });
+
+  return resolvedUsers;
+}}
       resolveMentionSuggestions={({text}) => {
+        if (!users || users.length === 0) return [];
         let filteredUsers = users;
 
         if (text) {
