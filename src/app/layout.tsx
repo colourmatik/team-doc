@@ -12,6 +12,33 @@ import "@liveblocks/react-tiptap/styles.css";
 
 import "./globals.css";
 
+
+export const customRu = {
+  ...ruRU,
+
+
+  formFieldLabel__organizationName: "Название организации",
+  formFieldInputPlaceholder__organizationName: "Введите название",
+
+  formFieldLabel__organizationSlug: "Идентификатор",
+  formFieldInputPlaceholder__organizationSlug: "primer-vvoda",
+
+  formFieldLabel__organizationProfileLogo: "Логотип",
+  formFieldInputPlaceholder__organizationProfileLogo: "",
+
+  formButtonPrimary: "Создать организацию",
+
+  organizationProfile: {
+    ...(ruRU.organizationProfile || {}),
+    membersPage: {
+      ...(ruRU.organizationProfile?.membersPage || {}),
+      action__invite: "Пригласить",
+      action__search: "Поиск",
+    }},
+};
+
+
+
 const inter = Inter ({
   subsets: ["latin"],
 });
@@ -28,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider 
-    localization={ruRU}
+    localization={customRu}
     appearance={{
     layout: {
       unsafe_disableDevelopmentModeWarnings: true,
