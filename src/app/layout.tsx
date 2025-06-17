@@ -11,6 +11,7 @@ import "@liveblocks/react-ui/styles.css";
 import "@liveblocks/react-tiptap/styles.css";
 
 import "./globals.css";
+import { ScrollLockDisabler } from "@/components/scroll-lock-disabler";
 
 
 export const customRu = {
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body
         className={inter.className}
       >
+        <ScrollLockDisabler/>
         <NuqsAdapter>
           <ConvexClientProvider>
             <Toaster/>
