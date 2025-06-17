@@ -28,13 +28,37 @@ import {Ruler} from './ruler'
 import { Threads } from './threads';
 import { RIGHT_MARGIN_DEFAULT, LEFT_MARGIN_DEFAULT } from "@/constants/margins";
 import { Id } from '../../../../convex/_generated/dataModel';
+import { LiveblocksUIConfig } from "@liveblocks/react-ui";
+import { ReactNode } from "react";
+
 
 
 interface EditorProps{
   initialContent?:string | undefined;
   documentId: Id<"documents">;
 }
+interface LiveblocksCommentsWrapperProps {
+  children: ReactNode;
+}
 
+function LiveblocksCommentsWrapper({ children }: LiveblocksCommentsWrapperProps) {
+  return (
+    <LiveblocksUIConfig
+      overrides={{
+        COMPOSER_PLACEHOLDER: "Оставьте комментарий…",
+        THREAD_RESOLVE: "Разрешить",
+        THREAD_UNRESOLVE: "Отменить решение",
+        COMMENT_EDIT: "Изменить",
+        COMMENT_DELETE: "Удалить",
+        COMMENT_ADD_REACTION: "Реакция",
+        COMMENT_MORE: "Ещё",
+        THREAD_COMPOSER_PLACEHOLDER: "Ответить",
+      }}
+    >
+      {children}
+    </LiveblocksUIConfig>
+  );
+}
 export const Editor = ({initialContent}: EditorProps) => {
   const leftMargin = useStorage((root) => root.leftMargin) ?? LEFT_MARGIN_DEFAULT;
   const rightMargin = useStorage((root) => root.rightMargin) ?? RIGHT_MARGIN_DEFAULT;
@@ -123,10 +147,12 @@ export const Editor = ({initialContent}: EditorProps) => {
         <div className='size-full overflow-x-auto bg-[#E6EEF7] px-4 print:p-0 print:bg-white print:overflow-visible'>
            <Ruler/>
            <div className='min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0'>
+            <LiveblocksCommentsWrapper>
             <EditorContent editor={editor}/>
             <div className='print:hidden'>
             <Threads editor={editor}/>
             </div>
+            </LiveblocksCommentsWrapper>
             </div>
         </div>
      );

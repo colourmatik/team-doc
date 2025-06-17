@@ -26,8 +26,6 @@ export const customRu = {
   formFieldLabel__organizationProfileLogo: "Логотип",
   formFieldInputPlaceholder__organizationProfileLogo: "",
 
-  formButtonPrimary: "Создать организацию",
-
   organizationProfile: {
     ...(ruRU.organizationProfile || {}),
     membersPage: {
